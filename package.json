@@ -1,0 +1,44 @@
+{
+  "name": "mk-backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Festus123/mkclothing#readme",
+  "bugs": {
+    "url": "https://github.com/Festus123/mkclothing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Festus123/mkclothing.git"
+  },
+  "license": "ISC",
+  "author": "Festus & israel",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit",
+    "start": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.93.3",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^1.41.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "iconv-lite": "^0.6.3",
+    "jsonwebtoken": "^9.0.2",
+    "miller": "^1.0.2",
+    "mongoose": "^9.0.0",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node": "^20.19.6",
+    "nodemailer": "^7.0.10",
+    "nodemon": "^3.1.11",
+    "resend": "^6.17.2"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
+  }
+}
