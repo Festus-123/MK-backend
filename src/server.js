@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 // 1. Import your new order routes
 // import orderRoutes from './routes/orderRoute.js'; 
 import emailRoutes from './routes/emailRoutes.js'; // Adjust this path if your folder structure differs
+import adminRequestRoute from './routes/adminRequestRoute.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -37,6 +38,8 @@ app.use(cookieParser());
 // 2. Register your order routes
 // This prefixes all endpoints inside orderRoutes with "/api/orders"
 app.use('/api/emails', emailRoutes);
+
+app.use('/api/admin-requests', adminRequestRoute);
 
 // Optional: Global health check route
 app.get('/api/health', (req, res) => {
