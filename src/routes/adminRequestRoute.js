@@ -4,7 +4,7 @@ import {
   getAdminRequests,
   approveAdminRequest,
   rejectAdminRequest,
-} from '../controller/adminRequestController.js';
+} from '../controller/adminRequestController';
 
 const router = express.Router();
 
