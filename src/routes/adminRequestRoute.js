@@ -4,7 +4,7 @@ import {
   getAdminRequests,
   approveAdminRequest,
   rejectAdminRequest,
-} from '../controller/adminRequestController';
+} from '../controller/adminRequestController.js';
 
 const router = express.Router();
 
@@ -15,9 +15,9 @@ router.post('/', createAdminRequest);
 router.get('/', getAdminRequests);
 
 // Approve admin request (super admin only)
-router.patch('/:id/approve', approveAdminRequest);
+router.patch('/:requestId/approve', approveAdminRequest);
 
 // Reject admin request (super admin only)
-router.patch('/:id/reject', rejectAdminRequest);
+router.patch('/:requestId/reject', rejectAdminRequest);
 
 export default router;

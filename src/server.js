@@ -35,6 +35,13 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "M&K Backend is running 🚀",
+  });
+});
+
 // 2. Register your order routes
 // This prefixes all endpoints inside orderRoutes with "/api/orders"
 app.use('/api/emails', emailRoutes);

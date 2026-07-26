@@ -147,3 +147,94 @@ export const approveAdminRequest = async (req, res) => {
     });
   }
 };
+
+
+/**
+ * Get all admin requests
+ */
+export const getAdminRequests = async (req, res) => {
+  try {
+    const { status } = req.query;
+
+    let query = supabase
+      .from('admin_requests')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (status && status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+
+    return res.status(200).json({
+      success: true,
+      count: data.length,
+      requests: data,
+    });
+  } catch (err) {
+    console.error(err);
+
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+/**
+ * Reject an admin request
+ */
+export const rejectAdminRequest = async (req, res) => {
+  try {
+    const { requestId } = req.params;
+
+    const { data: request, error } = await supabase
+      .from('admin_requests')
+      .select('*')
+      .eq('id', requestId)
+      .single();
+
+    if (error || !request) {
+      return res.status(404).json({
+        success: false,
+        message: 'Request not found.',
+      });
+    }
+
+    // Restore user role
+    const { error: roleError } = await supabase
+      .from('profiles')
+      .update({
+        role: 'customer',
+      })
+      .eq('id', request.user_id);
+
+    if (roleError) throw roleError;
+
+    // Mark request rejected
+    const { error: updateError } = await supabase
+      .from('admin_requests')
+      .update({
+        status: 'rejected',
+        rejected_at: new Date().toISOString(),
+      })
+      .eq('id', requestId);
+
+    if (updateError) throw updateError;
+
+    return res.status(200).json({
+      success: true,
+      message: 'Admin request rejected.',
+    });
+  } catch (err) {
+    console.error(err);
+
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
