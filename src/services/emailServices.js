@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import transporter from '../config/mailer';
+import transporter from '../config/mailer.js';
 
 const email = process.env.EMAIL_USER;
 const password = process.env.EMAIL_PASSWORD;
