@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import transporter from '../config/mailer';
 
 const email = process.env.EMAIL_USER;
 const password = process.env.EMAIL_PASSWORD;
@@ -12,19 +13,19 @@ export const sendOrderConfirmationEmail = async ({
   totalAmount,
 }) => {
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtp-relay.brevo.com',
+    //   port: 587,
+    //   secure: false,
 
-      auth: {
-        user: email,
-        pass: password,
-      },
-    });
+    //   auth: {
+    //     user: process.env.BREVO_LOGIN,
+    //     pass: process.env.BREVO_SMTP_KEY,
+    //   },
+    // });
 
     await transporter.verify();
-    console.log('SMTP Connection success');
+    console.log('Bewvo connected success');
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -223,20 +224,19 @@ export const sendOrderProcessingEmail = async ({
   orderId,
 }) => {
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      requireTLS: true,
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtp-relay.brevo.com',
+    //   port: 587,
+    //   secure: false,
 
-      auth: {
-        user: email,
-        pass: password,
-      },
-    });
+    //   auth: {
+    //     user: process.env.BREVO_LOGIN,
+    //     pass: process.env.BREVO_SMTP_KEY,
+    //   },
+    // });
 
     await transporter.verify();
-    console.log('SMTP Connection success');
+    console.log('Brevo Connected');
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -358,13 +358,16 @@ export const sendOrderShippedEmail = async ({
   orderId,
 }) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: email,
-        pass: password,
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtp-relay.brevo.com',
+    //   port: 587,
+    //   secure: false,
+
+    //   auth: {
+    //     user: process.env.BREVO_LOGIN,
+    //     pass: process.env.BREVO_SMTP_KEY,
+    //   },
+    // });
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -482,13 +485,16 @@ export const sendOrderDeliveredEmail = async ({
   orderId,
 }) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: email,
-        pass: password,
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtp-relay.brevo.com',
+    //   port: 587,
+    //   secure: false,
+
+    //   auth: {
+    //     user: process.env.BREVO_LOGIN,
+    //     pass: process.env.BREVO_SMTP_KEY,
+    //   },
+    // });
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -611,13 +617,16 @@ export const sendDeletedOrderEmail = async ({
   reason,
 }) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: email,
-        pass: password,
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtp-relay.brevo.com',
+    //   port: 587,
+    //   secure: false,
+
+    //   auth: {
+    //     user: process.env.BREVO_LOGIN,
+    //     pass: process.env.BREVO_SMTP_KEY,
+    //   },
+    // });
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -743,13 +752,16 @@ export const sendAdminApprovalRequestEmail = async ({
   applicantEmail,
 }) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: email,
-        pass: password,
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtp-relay.brevo.com',
+    //   port: 587,
+    //   secure: false,
+
+    //   auth: {
+    //     user: process.env.BREVO_LOGIN,
+    //     pass: process.env.BREVO_SMTP_KEY,
+    //   },
+    // });
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
