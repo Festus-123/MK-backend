@@ -13,12 +13,18 @@ export const sendOrderConfirmationEmail = async ({
 }) => {
   try {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+
       auth: {
         user: email,
         pass: password,
       },
     });
+
+    await transporter.verify();
+    console.log('SMTP Connection success');
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -218,12 +224,18 @@ export const sendOrderProcessingEmail = async ({
 }) => {
   try {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+
       auth: {
         user: email,
         pass: password,
       },
     });
+
+    await transporter.verify();
+    console.log('SMTP Connection success');
 
     await transporter.sendMail({
       from: `"M&K Clothing" <${email}>`,
@@ -326,7 +338,11 @@ export const sendOrderProcessingEmail = async ({
       success: true,
     };
   } catch (error) {
-    console.error('Processing email error:', error);
+    // console.error('Processing email error:', error);
+    console.error('Message:', error.message);
+    console.error('Code:', error.code);
+    console.error('Response:', error.response);
+    console.error(error);
 
     return {
       success: false,
@@ -855,4 +871,3 @@ export const sendAdminApprovalRequestEmail = async ({
     };
   }
 };
-
