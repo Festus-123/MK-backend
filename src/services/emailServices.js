@@ -887,7 +887,7 @@
 
 
 import Brevo from "@getbrevo/brevo";
-import apiInstance from "./emailClient.js";
+import apiInstance from "../config/emailClient.js";
 
 import { orderConfirmationTemplate } from "../templates/orderConfirmation.js";
 import { orderProcessingTemplate } from "../templates/orderProcessing.js";
