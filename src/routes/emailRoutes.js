@@ -1,10 +1,8 @@
-
-import express from 'express';
-import { handleSendEmail } from '../controller/emailController.js';
+import express from "express";
+import { sendEmail } from "../controllers/emailController.js";
 
 const router = express.Router();
 
-// This endpoint will be accessed at /api/emails/send
-router.post('/send', handleSendEmail);
+router.post("/send", sendEmail);
 
 export default router;
