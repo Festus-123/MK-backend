@@ -889,11 +889,11 @@
 import Brevo from "@getbrevo/brevo";
 import apiInstance from "../config/emailClient.js";
 
-import { orderConfirmationTemplate } from "../templates/orderConfirmation.js";
-import { orderProcessingTemplate } from "../templates/orderProcessing.js";
-import { orderShippedTemplate } from "../templates/orderShipped.js";
-import { orderDeliveredTemplate } from "../templates/orderDelivered.js";
-import { adminApprovalRequestTemplate } from "../templates/adminApproval.js";
+import { orderConfirmationTemplate } from "../template/orderConfirmation.js";
+import { orderProcessingTemplate } from "../template/orderProcessing.js";
+import { orderShippedTemplate } from "../template/orderShipped.js";
+import { orderDeliveredTemplate } from "../template/orderDelivered.js";
+import { adminApprovalRequestTemplate } from "../template/adminApproval.js";
 
 
 export const sendOrderConfirmationEmail = async ({
