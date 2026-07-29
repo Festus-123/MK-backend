@@ -6,6 +6,7 @@ import { orderConfirmationTemplate } from "../template/orderConfirmation.js";
 import { orderProcessingTemplate } from "../template/orderProcessing.js";
 import { orderShippedTemplate } from "../template/orderShipped.js";
 import { orderDeliveredTemplate } from "../template/orderDelivered.js";
+import { orderDeletedTemplate } from "../template/orderDeleted.js";
 import { adminApprovalRequestTemplate } from "../template/adminApproval.js";
 import { orderDeletedTemplate } from "../template/orderDeleted.js";
 
@@ -167,7 +168,7 @@ export const sendOrderShippedEmail = async ({
   }
 };
 
-export const sendOrderDeletedEmail = async ({
+export const sendDeletedOrderEmail = async ({
   customerEmail,
   customerName,
   orderId,
