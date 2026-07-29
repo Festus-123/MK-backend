@@ -114,7 +114,7 @@ import {
   sendOrderDeliveredEmail,
   sendDeletedOrderEmail,
   sendAdminApprovalRequestEmail,
-} from "../services/emailServices.js";
+} from "../services/emailServices.js";  
 
 export const handleSendEmail = async (req, res) => {
   const {

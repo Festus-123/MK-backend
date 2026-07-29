@@ -7,6 +7,7 @@ import { orderProcessingTemplate } from "../template/orderProcessing.js";
 import { orderShippedTemplate } from "../template/orderShipped.js";
 import { orderDeliveredTemplate } from "../template/orderDelivered.js";
 import { adminApprovalRequestTemplate } from "../template/adminApproval.js";
+import { orderDeletedTemplate } from "../template/orderDeleted.js";
 
 
 export const sendOrderConfirmationEmail = async ({
@@ -158,6 +159,59 @@ export const sendOrderShippedEmail = async ({
     };
   } catch (error) {
     console.error("Order shipped email error:", error);
+
+    return {
+      success: false,
+      error: error.message,
+    };
+  }
+};
+
+export const sendOrderDeletedEmail = async ({
+  customerEmail,
+  customerName,
+  orderId,
+  reason,
+}) => {
+  try {
+    const email = new Brevo.SendSmtpEmail();
+
+    email.sender = {
+      name: "M&K Clothing",
+      email: process.env.BREVO_SENDER_EMAIL,
+    };
+
+    email.to = [
+      {
+        email: customerEmail,
+        name: customerName,
+      },
+    ];
+
+    email.bcc = [
+      {
+        email: process.env.BREVO_SENDER_EMAIL,
+        name: "M&K Clothing",
+      },
+    ];
+
+    email.subject = `Your Order Has Been Deleted • ${orderId}`;
+
+    email.htmlContent = orderDeletedTemplate({
+      customerName,
+      orderId,
+      reason,
+    });
+
+    await apiInstance.sendTransacEmail(email);
+
+    console.log("Order Deleted email dispatched successfully.");
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.error("Order Deleted email error:", error);
 
     return {
       success: false,
