@@ -112,7 +112,7 @@ import {
   sendOrderProcessingEmail,
   sendOrderShippedEmail,
   sendOrderDeliveredEmail,
-  sendDeletedOrderEmail,
+  sendOrderDeletedEmial,
   sendAdminApprovalRequestEmail,
 } from "../services/emailServices.js";  
 
@@ -264,7 +264,7 @@ export const handleSendEmail = async (req, res) => {
           });
         }
 
-        await sendDeletedOrderEmail({
+        await sendOrderDeletedEmial({
           customerEmail,
           customerName,
           orderId: customerOrderId,
