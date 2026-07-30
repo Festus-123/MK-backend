@@ -1,5 +1,4 @@
 export const orderDeletedTemplate = async ({
-  customerEmail,
   customerName,
   orderId,
   reason,
